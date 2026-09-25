@@ -40,6 +40,7 @@
 
 // export default AllWorkouts;
 
+import Link from "next/link";
 import WorkoutCard from "./WorkoutCard";
 
 const getWorkouts = async () => {
@@ -85,6 +86,8 @@ const AllWorkouts = async () => {
       </div>
     </div>
   );
+
+
 };
 
 export default AllWorkouts;

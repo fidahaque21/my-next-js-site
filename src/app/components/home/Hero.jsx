@@ -12,7 +12,7 @@ const Hero = () => {
           </p>
 
           <h1 className="max-w-2xl text-4xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            Train with intent. Log every set.
+            Train with intent. Log  every set.
           </h1>
 
           <p className="mt-5 max-w-xl text-sm leading-6 text-gray-400 sm:mt-7 sm:text-base sm:leading-7 md:text-lg">

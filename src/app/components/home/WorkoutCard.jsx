@@ -1,10 +1,12 @@
-import Image from "next/image";
+
+import Link from "next/link";
 import { FaClock, FaFire, FaStar } from "react-icons/fa";
 
 const WorkoutCard = ({ workout }) => {
   if (!workout) return null;
 
   const {
+    id,
     name,
     image,
     muscleGroups,
@@ -15,7 +17,8 @@ const WorkoutCard = ({ workout }) => {
   } = workout;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-800 bg-[#15171c] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gray-700 hover:shadow-lg">
+
+    <Link href={`/workouts/${id}`} className="overflow-hidden rounded-xl border border-gray-800 bg-[#15171c] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gray-700 hover:shadow-lg">
 
       {/* Image */}
       <div className="h-70 w-full overflow-hidden">
@@ -77,7 +80,7 @@ const WorkoutCard = ({ workout }) => {
 
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
