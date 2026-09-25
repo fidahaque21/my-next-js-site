@@ -12,6 +12,7 @@ export default function Footer() {
               width={25}
               height={50}
               alt="Logo"
+              className="w-8 h-auto"
             />
           </div>
           <span className="text-xl font-bold tracking-wide text-white">

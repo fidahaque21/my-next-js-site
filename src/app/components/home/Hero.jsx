@@ -31,7 +31,7 @@ const Hero = () => {
             alt="Workout"
             fill
             className="object-contain object-bottom"
-            priority
+            // priority
           />
         </div>
 
