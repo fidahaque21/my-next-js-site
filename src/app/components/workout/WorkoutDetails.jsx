@@ -1,5 +1,8 @@
+import AddToPlanButton from "./AddtoPlanBtn";
+
 const WorkoutDetails = ({ workout }) => {
   const {
+    id,
     name,
     image,
     muscleGroups,
@@ -150,10 +153,7 @@ const WorkoutDetails = ({ workout }) => {
 
           {/* Buttons */}
           <div className="mt-7 flex flex-wrap gap-3">
-            <button className="rounded-lg bg-lime-400 px-5 py-3 text-sm font-semibold text-black transition hover:bg-lime-300">
-              Add to today's plan
-            </button>
-
+            <AddToPlanButton workout={workout} />
             <button className="rounded-lg border border-gray-700 px-5 py-3 text-sm font-medium text-gray-300 transition hover:border-gray-500 hover:text-white">
               ♡ Save for later
             </button>

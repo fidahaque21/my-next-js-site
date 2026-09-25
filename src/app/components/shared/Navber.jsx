@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-7 text-sm">
           <Link
-            href="/plan"
+            href="/my-plan"
             className="flex items-center gap-2 text-gray-300 transition hover:text-white"
           >
             <span>Plan</span>
@@ -42,7 +42,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/saved"
+            href="/my-plan"
             className="flex items-center gap-2 text-gray-300 transition hover:text-white"
           >
             <span>Saved</span>
