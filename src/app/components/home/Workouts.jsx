@@ -20,7 +20,7 @@
 // const AllWorkouts = async () => {
 //     const workouts = await getWorkouts();
 //     console.log(workouts);
-    
+
 //     return (
 //         <div>
 //             <Suspense fallback='loading'>
@@ -33,7 +33,7 @@
 //                 ))}
 //             </div>
 //             </Suspense>
-            
+
 //         </div>
 //     );
 // };
@@ -52,7 +52,7 @@ const getWorkouts = async () => {
 
     const data = await res.json();
 
-    
+
     return Array.isArray(data) ? data : data.data || [];
   } catch (error) {
     console.error("Fetch Error:", error);
@@ -68,8 +68,17 @@ const AllWorkouts = async () => {
   }
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+    <div className="container">
+      <div className="px-7 py-8">
+        <h2 className="text-4xl font-bold  ">
+          THE LIBRARY
+        </h2>
+
+        <p className="mt-1 text-lg text-gray-400">
+          Twelve lifts covering every major muscle group.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {workouts.map((workout) => (
           <WorkoutCard key={workout.id} workout={workout} />
         ))}
