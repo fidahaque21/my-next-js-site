@@ -26,7 +26,7 @@ const AllWorkouts = async () => {
   }
 
   return (
-    <div className="container">
+    <div className="container" id="library">
       <div className="px-7 py-8">
         <h2 className="text-4xl font-bold  ">
           THE LIBRARY

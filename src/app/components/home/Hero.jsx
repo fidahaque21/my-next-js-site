@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Hero = () => {
   return (
     <section className="px-4 py-4 sm:px-6 md:px-8 lg:px-10">
@@ -64,17 +66,17 @@ const Hero = () => {
             into today&apos;s plan, and watch the week&apos;s work add up.
           </p>
 
-          <button
+          <a
+            href="#library"
             className="
-              mt-6 rounded-lg bg-lime-400 px-6 py-3
-              text-sm font-bold uppercase text-black
-              transition duration-200 hover:bg-lime-300
-              
-              sm:mt-8 sm:px-7 sm:py-4
-            "
+    mt-6 inline-block rounded-lg bg-lime-400 px-6 py-3
+    text-center text-sm font-bold uppercase text-black
+    transition duration-200 hover:bg-lime-300
+    sm:mt-8 sm:px-7 sm:py-4
+  "
           >
             Browse Workouts
-          </button>
+          </a>
         </div>
 
         {/* Hero Image */}
