@@ -1,3 +1,5 @@
+'use client'
+import { usePlan } from "@/app/context/PlanContext";
 import AddToPlanButton from "./AddtoPlanBtn";
 
 const WorkoutDetails = ({ workout }) => {
@@ -16,7 +18,9 @@ const WorkoutDetails = ({ workout }) => {
     rating,
     instructions,
   } = workout;
+  const { saved, toggleSave } = usePlan();
 
+  const isSaved = saved.some((item) => item.id === id);
   return (
     <section className="min-h-screen bg-[#0d0f13] px-4 py-8 text-white md:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
@@ -152,10 +156,13 @@ const WorkoutDetails = ({ workout }) => {
           </div>
 
           {/* Buttons */}
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-7  flex flex-wrap gap-3">
             <AddToPlanButton workout={workout} />
-            <button className="rounded-lg border border-gray-700 px-5 py-3 text-sm font-medium text-gray-300 transition hover:border-gray-500 hover:text-white">
-              ♡ Save for later
+            <button
+              onClick={() => toggleSave(workout)}
+              className="cursor-pointer rounded-lg border border-gray-700 px-5 py-3 text-sm font-medium text-gray-300 transition hover:border-gray-500 hover:text-white"
+            >
+              {isSaved ? "✓ Saved" : "♡ Save for later"}
             </button>
           </div>
 

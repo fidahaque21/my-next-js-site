@@ -5,7 +5,7 @@ import WorkoutDetails from "@/app/components/workout/WorkoutDetails";
 const WorkoutPage = async ({ params }) => {
   const { id } = await params;
 
-  // এখানে API call
+  //  API call
   const res = await fetch(
     `https://api.abcz.workers.dev/api/fitlog/${id}`
   );

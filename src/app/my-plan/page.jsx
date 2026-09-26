@@ -5,31 +5,35 @@ import { usePlan } from "../context/PlanContext";
 import { useState } from "react";
 
 const MyPlan = () => {
-  const { plan } = usePlan();
+  const { plan, saved, removeFromPlan, removeFromSaved, markAsDone } = usePlan();
+  const [activeTab, setActiveTab] = useState("plan");
   const [sortBy, setSortBy] = useState("duration");
-  const sortedPlan = [...plan].sort((a, b) => {
-    if (sortBy === "duration") {
-      return b.duration - a.duration;
-    }
+  const currentList = [...(activeTab === "plan" ? plan : saved)].sort(
+    (a, b) => {
+      if (sortBy === "duration") {
+        return Number(b.duration) - Number(a.duration);
+      }
 
-    if (sortBy === "calories") {
-      return b.caloriesBurned - a.caloriesBurned;
-    }
+      if (sortBy === "calories") {
+        return Number(b.caloriesBurned) - Number(a.caloriesBurned);
+      }
 
-    if (sortBy === "rating") {
-      return b.rating - a.rating;
-    }
+      if (sortBy === "rating") {
+        return Number(b.rating) - Number(a.rating);
+      }
 
-    return 0;
-  });
+      return 0;
+    }
+  );
+
   // Calculate total minutes
-  const totalMinutes = plan.reduce(
+  const totalMinutes = currentList.reduce(
     (total, workout) => total + Number(workout.duration || 0),
     0
   );
 
   // Calculate total calories
-  const totalCalories = plan.reduce(
+  const totalCalories = currentList.reduce(
     (total, workout) => total + Number(workout.caloriesBurned || 0),
     0
   );
@@ -57,7 +61,7 @@ const MyPlan = () => {
             </p>
 
             <p className="mt-1 text-4xl font-extrabold text-lime-400">
-              {plan.length}
+              {currentList.length}
             </p>
           </div>
 
@@ -87,11 +91,23 @@ const MyPlan = () => {
         {/* Tabs + Sort */}
         <div className="mt-7 flex items-center justify-between">
           <div className="flex rounded-xl border border-gray-800 bg-[#15171c] p-1">
-            <button className="rounded-lg bg-[#242832] px-5 py-2 text-sm font-semibold">
+            <button
+              onClick={() => setActiveTab("plan")}
+              className={`rounded-lg px-5 py-2 text-sm font-semibold transition ${activeTab === "plan"
+                ? "bg-[#242832] text-white"
+                : "text-gray-500 hover:text-gray-300"
+                }`}
+            >
               Today's Plan
             </button>
 
-            <button className="px-5 py-2 text-sm text-gray-500">
+            <button
+              onClick={() => setActiveTab("saved")}
+              className={`rounded-lg px-5 py-2 text-sm font-semibold transition ${activeTab === "saved"
+                ? "bg-[#242832] text-white"
+                : "text-gray-500 hover:text-gray-300"
+                }`}
+            >
               Saved
             </button>
           </div>
@@ -112,14 +128,19 @@ const MyPlan = () => {
         </div>
 
         {/* Empty State / Workout List */}
-        {plan.length === 0 ? (
+        {currentList.length === 0 ? (
           <div className="mt-6 flex min-h-[275px] flex-col items-center justify-center rounded-2xl border border-dashed border-gray-800 text-center">
+
             <h2 className="text-xl font-extrabold uppercase">
-              Nothing Here Yet
+              {activeTab === "plan"
+                ? "Nothing Here Yet"
+                : "No Saved Workouts"}
             </h2>
 
             <p className="mt-2 text-sm text-gray-500">
-              Browse the library and add a lift to get today moving.
+              {activeTab === "plan"
+                ? "Browse the library and add a lift to get today moving."
+                : "Save a workout for later and it will appear here."}
             </p>
 
             <Link
@@ -128,10 +149,11 @@ const MyPlan = () => {
             >
               Go to workouts
             </Link>
+
           </div>
         ) : (
           <div className="mt-6 space-y-4">
-            {sortedPlan.map((workout) => (
+            {currentList.map((workout) => (
               <div
                 key={workout.id}
                 className="flex items-center justify-between rounded-2xl border border-gray-800 bg-[#15171c] p-4"
@@ -177,13 +199,25 @@ const MyPlan = () => {
                   >
                     View Details
                   </Link>
-
-                  <button className="rounded-full bg-lime-400 px-5 py-2 text-sm font-bold text-black">
-                    ✓ Mark as Done
-                  </button>
-
-                  <button className="px-2 text-xl text-gray-600 hover:text-white">
-                    ×
+                  {activeTab === "plan" && (
+                    <button
+                      onClick={() => markAsDone(workout.id)}
+                      className="rounded-full bg-lime-400 px-5 py-2 text-sm font-bold text-black transition hover:bg-lime-300"
+                    >
+                      ✓ Mark as Done
+                    </button>
+                  )}
+                  <button
+                    onClick={() => {
+                      if (activeTab === "plan") {
+                        removeFromPlan(workout.id);
+                      } else {
+                        removeFromSaved(workout.id);
+                      }
+                    }}
+                    className="px-2 text-xl text-gray-600 hover:text-white"
+                  >
+                    ✖
                   </button>
                 </div>
               </div>

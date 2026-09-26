@@ -1,7 +1,11 @@
+
 import Image from 'next/image';
 import Link from "next/link";
 import { NavProvider } from "./NavContext";
 import NavLink from "./NavLink";
+import { usePlan } from '@/app/context/PlanContext';
+import PlanCount from '@/app/context/PlanCount';
+import SaveCount from '@/app/context/SaveCount';
 
 const Navbar = () => {
   return (
@@ -37,7 +41,7 @@ const Navbar = () => {
           >
             <span>Plan</span>
             <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#b8f500] px-1 text-xs font-bold text-black">
-              0
+              <PlanCount/>
             </span>
           </Link>
 
@@ -46,9 +50,9 @@ const Navbar = () => {
             className="flex items-center gap-2 text-gray-300 transition hover:text-white"
           >
             <span>Saved</span>
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-gray-600 px-1 text-xs text-gray-400">
-              0
-            </span>
+            
+              <SaveCount/>
+            
           </Link>
         </div>
 

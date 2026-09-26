@@ -2,7 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/shared/Footer.jsx";
 import Navber from "./components/shared/Navber.jsx";
-import { PlanProvider, WorkoutProvider } from "./context/PlanContext";
+import { PlanProvider } from "./context/PlanContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,6 +31,7 @@ export default function RootLayout({ children }) {
         <Navber />
         <main>{children}</main>
         <Footer />
+        <ToastContainer position="top-left" autoClose={2000} />
         </PlanProvider>
 
       </body>
