@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="mx-auto flex min-h-20 max-w-[1280px] items-center justify-between gap-4 px-4 sm:px-6">
 
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3">
+        <Link href="/" className="  flex shrink-0 items-center gap-2 sm:gap-3">
           <Image
             src="/logo.png"
             width={25}
@@ -34,7 +34,7 @@ const Navbar = () => {
         </NavProvider>
 
         {/* Plan & Saved */}
-        <div className="flex items-center gap-3 text-sm sm:gap-5 md:gap-7">
+        <div className="flex -translate-y-1 items-center gap-3 text-sm sm:translate-y-0 sm:gap-5 md:gap-7">
 
           {/* Plan */}
           <Link
@@ -55,7 +55,7 @@ const Navbar = () => {
           >
             <span>Saved</span>
 
-            <span >
+            <span>
               <SaveCount />
             </span>
           </Link>
