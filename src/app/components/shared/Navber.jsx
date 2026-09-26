@@ -34,7 +34,7 @@ const Navbar = () => {
         </NavProvider>
 
         {/* Plan & Saved */}
-        <div className="flex -translate-y-1 items-center gap-3 text-sm sm:translate-y-0 sm:gap-5 md:gap-7">
+        <div className="flex flex-col items-end gap-1 text-sm sm:flex-row sm:items-center sm:gap-5 md:gap-7">
 
           {/* Plan */}
           <Link
